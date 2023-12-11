@@ -1,0 +1,30 @@
+{
+  "name": "AEM Screens Chrome Extension",
+  "description": "AEM Screens Chrome Extension",
+  "version": "0.2",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "aemScreensChromeExtension.html",
+    "default_icon": "aemScreensChromeExtension.png"
+  },
+  "permissions": [
+    "activeTab",
+    "<all_urls>",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": ["http://localhost/content/dam/universal-player/firmware.html", "https://publish-p104359-e982404.adobeaemcloud.com/content/dam/universal-player/firmware.html"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "externally_connectable": {
+    "accepts_tls_channel_id": false,
+    "matches": [ "*://localhost/*" ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["contentScript.js"]
+    }
+  ]
+}
